@@ -12,7 +12,7 @@ app = dash.Dash()
 
 df = pd.read_csv(
     'https://gist.githubusercontent.com/chriddyp/cb5392c35661370d95f300086accea51/raw/8e0768211f6b747c0db42a9ce9a0937dafcbd8b2/indicators.csv')
-df1 = pd.read_csv('C://Users//abhavnani//Desktop//volcano.csv')
+df1 = pd.read_csv('https://raw.githubusercontent.com/adybhav/WaterContaminationPlotly/master/pHchart.csv')
 '''pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/volcano.csv')'''
 DF_GAPMINDER = df[df['Year'] == 2007]
 DF_GAPMINDER.loc[0:20]
@@ -108,16 +108,7 @@ app.layout = html.Div([
         id='datatable-gapminder'
     ),
 ])
-@app.callback(
-    dash.dependencies.Output('output', 'children'),
-    [dash.dependencies.Input('heatmap', 'hoverData'),
-     dash.dependencies.Input('heatmap', 'clickData')])
-def display_hoverdata(hoverData, clickData):
-    return [
-        json.dumps(hoverData, indent=2),
-        html.Br(),
-        json.dumps(clickData, indent=2)
-    ]
+
 @app.callback(
     dash.dependencies.Output('crossfilter-indicator-scatter', 'figure'),
     [dash.dependencies.Input('crossfilter-xaxis-column', 'value'),
